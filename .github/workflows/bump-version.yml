@@ -16,6 +16,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Bump formula
-        run: gh workflow run bump-formula.yml --repo Alexander-Ignition/xc-gh --field formula=${{ github.event.inputs.formula }} --field version=${{ github.event.inputs.version }}
+        run: |
+          echo ${{ secrets.GH_PERSONAL_TOKEN }}
+          gh workflow run bump-formula.yml --repo Alexander-Ignition/xc-gh --field formula=${{ github.event.inputs.formula }} --field version=${{ github.event.inputs.version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_TOKEN }}
